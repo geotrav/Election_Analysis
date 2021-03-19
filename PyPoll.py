@@ -19,7 +19,10 @@ total_votes = 0
 candidate_options = []
 #Candidate votes dictionary
 candidate_votes = {}
-
+# Winning Candidate and Winning Count Tracker
+winning_candidate = ""
+winning_count = 0
+winning_percentage = 0
 
 # open election results and reaqd File
 with open (file_to_load) as election_data:
@@ -49,8 +52,22 @@ with open (file_to_load) as election_data:
     for candidate_name in candidate_options:
         votes = candidate_votes[candidate_name]
         vote_percentage = (float(votes)/float(total_votes)*100)
-        print (f"{candidate_name}:received {vote_percentage:.1f}% of the vote.")
+        print (f"{candidate_name}:{vote_percentage:.1f}% ({votes:,})\n")
+        # To do: print out each candidate's name, vote count, and percentage of
+        # votes to the terminal.
+        #print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
 
+        if (votes > winning_count) and (vote_percentage > winning_percentage):
+          winning_count = votes
+          winning_percentage= vote_percentage
+          winning_candidate= candidate_name
+    winning_candidate_summary = (
+    f"-------------------------\n"
+    f"Winner: {winning_candidate}\n"
+    f"Winning Vote Count: {winning_count:,}\n"
+    f"Winning Percentage: {winning_percentage:.1f}%\n"
+    f"-------------------------\n")
+print(winning_candidate_summary)
 
 
 
