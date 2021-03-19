@@ -13,6 +13,10 @@ import os
 file_to_load = os.path.join("Election_Analysis","Election_Analysis","Resources","election_results.csv")
 #assign variable to save file to a path
 file_to_save = os.path.join("Election_Analysis","Election_Analysis","analysis", "election_analysis.txt")
+# Initialize a total vote counter
+total_votes = 0
+# Declare list of candidates
+candidate_options = []
 
 # open election results and reaqd File
 with open (file_to_load) as election_data:
@@ -25,8 +29,20 @@ with open (file_to_load) as election_data:
     print (headers)
 
     #Print each row in the CSV file.
-    #for row in file_reader:
+    for row in file_reader:
+      
+       #2. Add to toal votes
+       total_votes +=1
+       #Capture candidate names
+       candidate_name = row[2]
+       #add candidate name to candidate options
+       
+       if candidate_name not in candidate_options:
+         candidate_options.append(candidate_name)
         #print (row)
+print (total_votes)
+print (candidate_options)
+
 
 
 # Create a filename variable to a direct or indirect path to the file.
