@@ -17,6 +17,9 @@ file_to_save = os.path.join("Election_Analysis","Election_Analysis","analysis", 
 total_votes = 0
 # Declare list of candidates
 candidate_options = []
+#Candidate votes dictionary
+candidate_votes = {}
+
 
 # open election results and reaqd File
 with open (file_to_load) as election_data:
@@ -39,9 +42,23 @@ with open (file_to_load) as election_data:
        
        if candidate_name not in candidate_options:
          candidate_options.append(candidate_name)
+        #2. Begin counting Candidates votes
+         candidate_votes[candidate_name]=0
+      #3. Begin counting
+       candidate_votes[candidate_name] += 1
+    for candidate_name in candidate_options:
+        votes = candidate_votes[candidate_name]
+        vote_percentage = (float(votes)/float(total_votes)*100)
+        print (f"{candidate_name}:received {vote_percentage:.1f}% of the vote.")
+
+
+
+
+
         #print (row)
 print (total_votes)
 print (candidate_options)
+print (candidate_votes)
 
 
 
